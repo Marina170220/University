@@ -4,17 +4,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        File universityDirectory = new File("F:\\University");
-
-            /*File student1101 = new File("src\\University\\F1\\Gr11\\1101.txt");
-            File student1102 = new File("src\\University\\F1\\Gr11\\1102.txt");
-            File student1103 = new File("src\\University\\F1\\Gr11\\1103.txt");
-            File student1104 = new File("src\\University\\F1\\Gr11\\1104.txt");
-            File student1105 = new File("src\\University\\F1\\Gr11\\1105.txt");
-            File student1106 = new File("src\\University\\F1\\Gr11\\1106.txt");
-            File student1107 = new File("src\\University\\F1\\Gr11\\1107.txt");
-            File student1108 = new File("src\\University\\F1\\Gr11\\1108.txt");*/
-
 
         List<Student> group11Students = new ArrayList<>();
         List<Student> group12Students = new ArrayList<>();
@@ -84,7 +73,7 @@ public class Main {
         try {
             group11.studentAverageMark(group11Students, "1103");
         } catch (NullAmountException e) {
-
+            System.err.println(e.getMessage());
         }
         try {
             group11.averageMarkOnSubjectInGroup(group11Students, "Math");
