@@ -1,0 +1,7 @@
+History 9,3
+Ecology 3,0
+Language 3,7
+Sociology 9,9
+Chemistry 3,0
+Psychology 8,0
+Ethics 3,0

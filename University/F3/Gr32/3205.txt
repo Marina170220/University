@@ -1,0 +1,8 @@
+Culturology 10,0
+Design 10,0
+Language 6,7
+Coloristics 8,9
+Classic 9,0
+Literature 9,0
+Philosophy 9,0
+Economy 8,0

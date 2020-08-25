@@ -1,0 +1,7 @@
+Math 5,0
+Economy 5,0
+Language 3,7
+Physics 7,9
+Astronomy 5,0
+Graphics 8,0
+Logics 2,0

@@ -1,0 +1,9 @@
+Culturology 10,0
+History 4,3
+Design 8,0
+Language 3,7
+Coloristics 8,9
+Classic 5,0
+Literature 10,0
+Ethics 4,0
+Philosophy 9,0

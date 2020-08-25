@@ -1,0 +1,7 @@
+Culturology 9,8
+History 4,3
+Language 9,7
+Classic 8,0
+Literature 4,0
+Ethics 7,0
+Philosophy 4,0

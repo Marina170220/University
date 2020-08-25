@@ -1,0 +1,6 @@
+Math 10,0
+Language 10,0
+Physics 9,9
+Astronomy 10,0
+Graphics 10,0
+

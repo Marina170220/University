@@ -1,0 +1,7 @@
+Culturology 5,0
+History 5,0
+Language 5,0
+Classic 5,0
+Literature 5,0
+Ethics 5,0
+Philosophy 5,0
