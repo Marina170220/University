@@ -190,7 +190,7 @@ class Group extends University {
                 group.add(new Student(studentFile.getName().substring(0, 4), marksAndSubjects));
             }
         }
-
+        scanner.close();
 
         if (group.isEmpty()) {
             throw new NullAmountException("Group " + groupDirectory.getName() + " is empty");
@@ -214,8 +214,8 @@ class Group extends University {
                 if (student.getId().contains(id)) {
                     findStudent = student;
                     averageMark = findStudent.averageMark(findStudent.getMarksAndSubjects());
+                    amountOfMarks++;
                 }
-                amountOfMarks++;
             }
         } catch (MarkValueExceptions ex) {
             System.err.println(ex.getMessage());
