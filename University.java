@@ -62,30 +62,6 @@ public class University {
             }
         }
     }
-
-
-    /*public static void findStudent(List<List<Student>> faculty) {    //метод не работает!!!
-        int counter = 0;
-        System.out.println("Enter student id");
-        Scanner userScanner = new Scanner(System.in);
-        for (List<Student> list : faculty) {
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getId().contains(userScanner.next())) {
-                    System.out.println("\nStudent id:" + list.get(i).getId());
-                    try {
-                        list.get(i).averageMark(list.get(i).getMarksAndSubjects());
-                    } catch (MarkValueExceptions ex) {
-                        System.err.println(ex.getMessage());
-                        System.err.println("Check student's " + list.get(i).getId() + " marks");
-                    }
-                    counter++;
-                }
-            }
-        }
-        if (counter == 0) {
-            System.out.println("Student not found");
-        }
-    }*/
 }
 
 
@@ -129,14 +105,14 @@ class Faculty extends University {
                 }
             }
 
-            if (amountOfMarks == 0) {
-                System.out.println("\nThere is no subject " + subject + " on faculty " + facultyName);
-            } else {
+            if (amountOfMarks > 0) {
                 averageMarkOnSubject = sum / amountOfMarks;
                 System.out.println("\nAverage mark on " + subject + " on faculty " + facultyName + ": " + averageMarkOnSubject);
+            } else {
+                System.out.println("\nThere is no subject " + subject + " on faculty " + facultyName);
             }
+            return averageMarkOnSubject;
         }
-        return averageMarkOnSubject;
     }
 
     @Override
@@ -164,6 +140,7 @@ class Group extends University {
                 '}';
     }
 
+
     public static List<Student> fillGroup(File groupDirectory, List<Student> group) throws NullAmountException, MarkValueExceptions {
         Scanner scanner = null;
 
@@ -171,31 +148,34 @@ class Group extends University {
             for (File studentFile : groupDirectory.listFiles()) {
                 try {
                     scanner = new Scanner(studentFile);
+
+                    Map<String, Double> marksAndSubjects = new HashMap<>();
+                    while (scanner.hasNext()) {
+
+                        marksAndSubjects.put(scanner.next(), scanner.nextDouble());
+                    }
+                    if (marksAndSubjects.isEmpty()) {
+                        throw new NullAmountException("Student " + studentFile.getName().substring(0, 4) + " has no subjects");
+                    }
+                    for (Double mark : marksAndSubjects.values()) {
+                        if (mark < 0.0 || mark > 10.0) {
+                            throw new MarkValueExceptions("Invalid mark value in directory " + groupDirectory.getName());
+                        }
+                    }
+                    group.add(new Student(studentFile.getName().substring(0, 4), marksAndSubjects));
+
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
+                } finally {
+                    scanner.close();
                 }
-                Map<String, Double> marksAndSubjects = new HashMap<>();
-                while (scanner.hasNext()) {
-
-                    marksAndSubjects.put(scanner.next(), scanner.nextDouble());
-                }
-                if (marksAndSubjects.isEmpty()) {
-                    throw new NullAmountException("Student " + studentFile.getName().substring(0, 4) + " has no subjects");
-                }
-                for (Double mark : marksAndSubjects.values()) {
-                    if (mark < 0.0 || mark > 10.0) {
-                        throw new MarkValueExceptions("Invalid mark value in directory " + groupDirectory.getName());
-                    }
-                }
-                group.add(new Student(studentFile.getName().substring(0, 4), marksAndSubjects));
             }
         }
-        scanner.close();
 
         if (group.isEmpty()) {
             throw new NullAmountException("Group " + groupDirectory.getName() + " is empty");
         }
-        //System.out.println("Group " + groupDirectory.getName() + ": " + group);
+        System.out.println("Group " + groupDirectory.getName() + ": " + group);
         return group;
     }
 
@@ -253,35 +233,16 @@ class Group extends University {
             }
         }
 
-        if (amountOfMarks == 0) {
-            System.out.println("\nThere is no subject " + subject + " in group " + groupName);
-        } else {
+        if (amountOfMarks > 0) {
             double averageMarkOnSubject = sum / amountOfMarks;
             System.out.println("\nAverage mark on " + subject + " in group " + groupName + ": " + averageMarkOnSubject);
+
+        } else {
+            System.out.println("\nThere is no subject " + subject + " in group " + groupName);
         }
     }
-
-
-   /*public void findStudentInGroup(List<Student> group) { //метод не работает!!!
-        int counter = 0;
-        System.out.println("Enter student id");
-        Scanner userScanner = new Scanner(System.in);
-        for (Student student : group) {
-            if (student.getId().contains(userScanner.next().trim())) {
-                System.out.println("\nStudent id:" + student.getId());
-                try {
-                    student.averageMark(student.getMarksAndSubjects());
-                } catch (MarkValueExceptions | NullAmountException ex) {
-                    System.err.println(ex.getMessage());
-                }
-                counter++;
-            }
-            }
-        if (counter==0){
-            System.out.println("Student not found");
-        }
-    }*/
 }
+
 
 class Student extends University {
 
