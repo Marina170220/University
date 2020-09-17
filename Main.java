@@ -66,7 +66,7 @@ public class Main {
             university.add(faculty2);
             university.add(faculty3);
 
-            group11.studentAverageMark(group11Students, "1101");
+            group34.studentAverageMark(group34Students, "3901");
             group12.averageMarkOnSubjectInGroup(group12Students, "Math");
             faculty1.averageMarkOnSubjectOnFaculty(faculty1Groups, "History");
             University.averageMarkOnSubjectInUniversity(university, "History");
